@@ -2,22 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('🚀 JS del Instituto Cumbres de Cóndores Poniente (ICCP) inicializado.');
 
-    /* ===================================================
-       1. NAVEGACIÓN ACTIVA Y EFECTO EN HEADER AL SCROLL
-    =================================================== */
     const header = document.querySelector('header');
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul li a');
 
     window.addEventListener('scroll', () => {
-        // Añade sombra más pronunciada al header al bajar la página
         if (window.scrollY > 50) {
             header.style.boxShadow = '0 10px 25px rgba(0,0,0,0.08)';
         } else {
             header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
         }
 
-        // Detecta qué sección está visible en pantalla
         let currentSection = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 140;
@@ -27,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Actualiza la clase activa en los enlaces del menú
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentSection}`) {
@@ -36,9 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ===================================================
-       2. INTERACTIVIDAD EN TARJETAS DE SERVICIOS
-    =================================================== */
     const accessLinks = document.querySelectorAll('.card-link');
 
     accessLinks.forEach(link => {
@@ -46,14 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const cardTitle = link.parentElement.querySelector('h3').textContent;
             
-            // Simulación de redirección o portal
             alert(`Accediendo al portal de: ${cardTitle}\n\nSerás redirigido a la plataforma institucional del ICCP.`);
         });
     });
 
-    /* ===================================================
-       3. VALIDACIÓN INTERACTIVA DEL FORMULARIO DE CONTACTO
-    =================================================== */
     const contactForm = document.querySelector('.contact-form');
 
     if (contactForm) {
@@ -65,29 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const asuntoInput = contactForm.querySelector('input[placeholder*="Asunto"]');
             const mensajeInput = contactForm.querySelector('textarea');
 
-            // Validación de campos vacíos
             if (!nombreInput.value.trim() || !emailInput.value.trim() || !mensajeInput.value.trim()) {
                 alert('⚠️ Por favor completa todos los campos obligatorios antes de enviar.');
                 return;
             }
 
-            // Confirmación visual al usuario
             alert(`✅ ¡Mensaje enviado con éxito!\n\nGracias ${nombreInput.value.trim()}, nos pondremos en contacto al correo (${emailInput.value.trim()}) a la brevedad.`);
 
-            // Limpia los campos del formulario
             contactForm.reset();
         });
     }
 
-    /* ===================================================
-       4. BOTÓN "VOLVER ARRIBA" DINÁMICO
-    =================================================== */
     const backToTopBtn = document.createElement('button');
     backToTopBtn.innerHTML = '↑';
     backToTopBtn.id = 'backToTop';
     document.body.appendChild(backToTopBtn);
 
-    // Estilos dinámicos para el botón
     Object.assign(backToTopBtn.style, {
         position: 'fixed',
         bottom: '30px',
@@ -107,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         transition: 'transform 0.3s, opacity 0.3s'
     });
 
-    // Mostrar/ocultar botón según el scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 400) {
             backToTopBtn.style.display = 'block';
@@ -120,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Acción de subir suavemente al hacer clic
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
